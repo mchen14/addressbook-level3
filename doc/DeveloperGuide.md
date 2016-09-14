@@ -47,7 +47,9 @@ Priority | As a ... | I want to ... | So that I can...
 `* * *` | user | find a person by name | locate details of persons without having to go through the entire list
 `* *` | user | hide [private contact details](#private-contact-detail) by default | minimize chance of someone else seeing them by accident
 `*` | user with many persons in the address book | sort persons by name | locate a person easily
-
+`*` | human being with eyes | make GUI look nicer | not punch myself repeatedly in the face while looking at it
+`*` | consumer | make certain commands easier to type/do (i.e. adding a person) | add people in more easily and quickly.
+`*` | consumer | add many people at one time | populate my addressbook more quickly.
 
 ## Appendix B : Use Cases
 
@@ -73,6 +75,28 @@ Use case ends.
 
 > 3a1. AddressBook shows an error message <br>
   Use case resumes at step 2
+  
+#### Use case: Rename tag
+
+**MSS**
+
+1. User requests to list persons.
+2. AddressBook shows a list of persons.
+3. User requests to rename a specific tag which an arbitrary number of people in the list contain.
+4. AddressBook confirms with user.
+5. AddressBook renames the tag for every person who has the tag. <br>
+Use case ends.
+
+**Extensions**
+
+3a. No one has the tag (but the tag is in the master tag list).
+
+> 3a1. AddressBook renames the tag in the master tag list.
+
+3b. The tag is invalid
+
+> 3b1. AddressBook shows an error message <br>
+Use case resumes at step 2.
 
 ## Appendix C : Non Functional Requirements
 
@@ -80,6 +104,9 @@ Use case ends.
 2. Should be able to hold up to 1000 persons.
 3. Should come with automated unit tests and open source code.
 4. Should favor DOS style commands over Unix-style commands.
+5. Should not take up more than 10MB space.
+6. Should not crash upon invalid commands.
+7. Should be secure against attacks designed to sabotage the application.
 
 ## Appendix D : Glossary
 
