@@ -71,7 +71,9 @@ public class Logic {
     public CommandResult execute(String userCommandText) throws Exception {
         Command command = new Parser().parseCommand(userCommandText);
         CommandResult result = execute(command);
-        recordResult(result);
+        if(command.isMutating()){
+            recordResult(result);
+        }
         return result;
     }
 
