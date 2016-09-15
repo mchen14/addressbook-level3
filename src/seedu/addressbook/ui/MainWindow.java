@@ -3,8 +3,11 @@ package seedu.addressbook.ui;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.ColorPicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
 import seedu.addressbook.commands.ExitCommand;
 import seedu.addressbook.logic.Logic;
 import seedu.addressbook.commands.CommandResult;
@@ -40,7 +43,14 @@ public class MainWindow {
     @FXML
     private TextField commandInput;
 
+    @FXML
+    private Button randomButton;
 
+    @FXML
+    void doRandomStuff(ActionEvent event){
+    	Color random = new Color(Math.random(), Math.random(), Math.random(), 1.0);
+    	outputConsole.setStyle("-fx-text-fill: rgb(" + (int)(random.getRed() * 255) + "," + (int)(random.getGreen() * 255) + "," + (int)(random.getBlue() * 255) + ");");
+    }
     @FXML
     void onCommand(ActionEvent event) {
         try {
