@@ -26,7 +26,7 @@ public class Logic{
         setAddressBook(s.load());
     }
 
-    Logic(StorageFile storageFile, AddressBook addressBook){
+    Logic(Storage storageFile, AddressBook addressBook){
         s = storageFile;
         setAddressBook(addressBook);
     }
