@@ -5,6 +5,7 @@ import seedu.addressbook.commands.CommandResult;
 import seedu.addressbook.data.AddressBook;
 import seedu.addressbook.data.person.ReadOnlyPerson;
 import seedu.addressbook.parser.Parser;
+import seedu.addressbook.storage.Storage;
 import seedu.addressbook.storage.StorageFile;
 
 import java.util.Collections;
@@ -14,43 +15,28 @@ import java.util.Optional;
 /**
  * Represents the main Logic of the AddressBook.
  */
-public class Logic {
-
-
-    private StorageFile storage;
+public class Logic{
     private AddressBook addressBook;
-
+    private Storage s;
     /** The list of person shown to the user most recently.  */
     private List<? extends ReadOnlyPerson> lastShownList = Collections.emptyList();
 
     public Logic() throws Exception{
-        setStorage(initializeStorage());
-        setAddressBook(storage.load());
+        s = new StorageFile();
+        setAddressBook(s.load());
     }
 
     Logic(StorageFile storageFile, AddressBook addressBook){
-        setStorage(storageFile);
+        s = storageFile;
         setAddressBook(addressBook);
-    }
-
-    void setStorage(StorageFile storage){
-        this.storage = storage;
     }
 
     void setAddressBook(AddressBook addressBook){
         this.addressBook = addressBook;
     }
-
-    /**
-     * Creates the StorageFile object based on the user specified path (if any) or the default storage path.
-     * @throws StorageFile.InvalidStorageFilePathException if the target file path is incorrect.
-     */
-    private StorageFile initializeStorage() throws StorageFile.InvalidStorageFilePathException {
-        return new StorageFile();
-    }
-
+    
     public String getStorageFilePath() {
-        return storage.getPath();
+        return s.getPath();
     }
 
     /**
@@ -85,7 +71,7 @@ public class Logic {
     private CommandResult execute(Command command) throws Exception {
         command.setData(addressBook, lastShownList);
         CommandResult result = command.execute();
-        storage.save(addressBook);
+        s.save(addressBook);
         return result;
     }
 
